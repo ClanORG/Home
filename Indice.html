@@ -1,0 +1,2759 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script type="text/javascript" src="https://cdnwidget.simplejsmenu.com/public/lib.en.min.js"></script>
+    <ins id="pm_union"
+         data-partner_id="6217067"
+         data-add_types="preroll,sticker,brand,mfs,banners,pcsticker"
+         data-source_url=""></ins>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Profesional - Embed69 & Cuevana Scraper</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .stats-bar {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .search-section {
+            padding: 30px;
+            background: white;
+        }
+
+        .provider-selector {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .provider-btn {
+            padding: 12px 25px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+        }
+
+        .provider-btn.active {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .provider-btn .badge {
+            background: #e74c3c;
+            color: white;
+            border-radius: 10px;
+            padding: 2px 6px;
+            font-size: 0.7rem;
+            position: absolute;
+            top: -5px;
+            right: -5px;
+        }
+
+        .search-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 15px 20px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            min-width: 250px;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-btn, .clear-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .search-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .clear-btn {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .clear-btn:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        .type-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        .type-btn {
+            padding: 10px 20px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .type-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 30px;
+            min-height: 200px;
+        }
+
+        .movie-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .movie-poster {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            background: #f8f9fa;
+        }
+
+        .movie-info {
+            padding: 20px;
+        }
+
+        .movie-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            line-height: 1.3;
+        }
+
+        .movie-year {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .movie-overview {
+            color: #34495e;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .movie-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 15px;
+            color: #f39c12;
+            font-weight: 600;
+        }
+
+        .imdb-id {
+            font-size: 0.8rem;
+            color: #95a5a6;
+            margin-bottom: 10px;
+            font-family: monospace;
+        }
+
+        .provider-badges {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .provider-badge {
+            background: #3498db;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .provider-badge.embed69 {
+            background: #2ecc71;
+        }
+
+        .provider-badge.cuevana {
+            background: #e74c3c;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            flex-direction: column;
+        }
+
+        .action-button {
+            width: 100%;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .action-button.available {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            color: white;
+        }
+
+        .action-button.available:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+        }
+
+        .action-button.not-available {
+            background: #95a5a6;
+            color: white;
+            cursor: not-allowed;
+        }
+
+        .action-button.checking {
+            background: #f39c12;
+            color: white;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .action-button.checking::after {
+            content: '';
+            width: 14px;
+            height: 14px;
+            border: 2px solid transparent;
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 50px;
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 3% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 95%;
+            max-width: 1000px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+        }
+
+        .close:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .provider-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            justify-content: center;
+        }
+
+        .provider-tab {
+            padding: 12px 25px;
+            border: 2px solid #e1e5e9;
+            background: white;
+            color: #667eea;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .provider-tab.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .season-episode-selector {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .season-episode-selector select {
+            padding: 10px 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 14px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .links-container {
+            margin-top: 20px;
+        }
+
+        .language-section {
+            margin-bottom: 25px;
+            border: 1px solid #e1e5e9;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .language-header {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            font-weight: 600;
+            color: #2c3e50;
+            border-bottom: 1px solid #e1e5e9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .server-count {
+            background: #667eea;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+
+        .links-list {
+            padding: 15px 20px;
+        }
+
+        .link-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .link-item:last-child {
+            border-bottom: none;
+        }
+
+        .server-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .server-name {
+            font-weight: 600;
+            color: #34495e;
+        }
+
+        .server-quality {
+            background: #3498db;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .link-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .view-link-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .view-link-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .copy-btn {
+            background: #95a5a6;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: #7f8c8d;
+        }
+
+        .error-message {
+            background: #e74c3c;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .success-message {
+            background: #2ecc71;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .pagination {
+            padding: 30px;
+            background: white;
+            border-top: 1px solid #e1e5e9;
+        }
+
+        .pagination-info {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #7f8c8d;
+            font-weight: 600;
+        }
+
+        .pagination-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .pagination-btn {
+            padding: 10px 15px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .pagination-btn:hover:not(:disabled) {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .page-numbers {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+
+        .page-number {
+            padding: 8px 12px;
+            border: 1px solid #e1e5e9;
+            background: white;
+            color: #667eea;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .page-number:hover {
+            background: #f8f9fa;
+            border-color: #667eea;
+        }
+
+        .page-number.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .page-ellipsis {
+            padding: 8px 12px;
+            color: #95a5a6;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .search-container {
+                flex-direction: column;
+            }
+
+            .search-input {
+                min-width: 100%;
+            }
+
+            .type-selector, .provider-selector {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .results-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+                padding: 20px;
+            }
+
+            .season-episode-selector {
+                flex-direction: column;
+            }
+
+            .pagination-controls {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .page-numbers {
+                justify-content: center;
+            }
+
+            .link-item {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+            }
+
+            .link-buttons {
+                width: 100%;
+                justify-content: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎬 Panel Profesional Multi-Scraper</h1>
+            <p>Embed69 & Cuevana - La mejor herramienta para encontrar enlaces de streaming</p>
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span class="stat-number" id="totalMovies">0</span>
+                    <span class="stat-label">Películas</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="totalSeries">0</span>
+                    <span class="stat-label">Series</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="totalServers">0</span>
+                    <span class="stat-label">Servidores</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="successRate">99%</span>
+                    <span class="stat-label">Éxito</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="search-section">
+            <div class="provider-selector">
+                <div class="provider-btn active" data-provider="both">
+                    <i class="fas fa-globe"></i> Ambos Scrapers
+                    <span class="badge">EL MEJOR</span>
+                </div>
+                <div class="provider-btn" data-provider="embed69">
+                    <i class="fas fa-video"></i> Solo Embed69
+                </div>
+                <div class="provider-btn" data-provider="cuevana">
+                    <i class="fas fa-film"></i> Solo Cuevana
+                </div>
+            </div>
+
+            <div class="type-selector">
+                <div class="type-btn active" data-type="movie">🎥 Películas</div>
+                <div class="type-btn" data-type="tv">📺 Series</div>
+            </div>
+            
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Buscar películas o series... (deja vacío para ver contenido popular)">
+                <button id="searchBtn" class="search-btn">
+                    <i class="fas fa-search"></i> Buscar
+                </button>
+                <button id="clearBtn" class="clear-btn">
+                    <i class="fas fa-home"></i> Popular
+                </button>
+            </div>
+        </div>
+
+        <div id="results" class="results-grid"></div>
+        
+        <div id="pagination" class="pagination" style="display: none;">
+            <div class="pagination-info">
+                <span id="currentPageInfo"></span>
+            </div>
+            <div class="pagination-controls">
+                <button id="firstPageBtn" class="pagination-btn">⏮️ Primera</button>
+                <button id="prevPageBtn" class="pagination-btn">⬅️ Anterior</button>
+                <div id="pageNumbers" class="page-numbers"></div>
+                <button id="nextPageBtn" class="pagination-btn">Siguiente ➡️</button>
+                <button id="lastPageBtn" class="pagination-btn">Última ⏭️</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para mostrar enlaces -->
+    <div id="linksModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Enlaces de streaming</h2>
+                <button class="close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="provider-tabs">
+                    <div class="provider-tab active" data-tab="combined">
+                        <i class="fas fa-globe"></i> Todos los Enlaces
+                    </div>
+                    <div class="provider-tab" data-tab="embed69">
+                        <i class="fas fa-video"></i> Embed69
+                    </div>
+                    <div class="provider-tab" data-tab="cuevana">
+                        <i class="fas fa-film"></i> Cuevana
+                    </div>
+                </div>
+
+                <div id="seasonEpisodeSelector" class="season-episode-selector" style="display: none;">
+                    <select id="seasonSelect">
+                        <option value="">Seleccionar temporada...</option>
+                    </select>
+                    <select id="episodeSelect">
+                        <option value="">Seleccionar episodio...</option>
+                    </select>
+                    <button id="getLinksBtn" class="search-btn">
+                        <i class="fas fa-link"></i> Ver Enlaces
+                    </button>
+                </div>
+                <div id="linksContainer" class="links-container"></div>
+            </div>
+        </div>
+    </div>
+
+<!-- Modal embebido para ver Stream -->
+<div id="modal-player" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background-color:rgba(0,0,0,0.95);z-index:10001;justify-content:center;align-items:center;">
+  <div style="position:relative;width:90%;max-width:1200px;height:80vh;">
+    
+    <!-- Botón cerrar -->
+    <button id="modal-close-x" onclick="cerrarModalInterno()" class="hide" style="
+  position:absolute;top:-40px;right:0;
+  color:white;font-size:24px;background:none;
+  border:none;cursor:pointer;z-index:10002;">✖</button>
+    
+    <!-- Loader -->
+    <div id="loader-interno" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border:5px solid #f3f3f3;border-top:5px solid #667eea;border-radius:50%;width:50px;height:50px;animation:spin 1s linear infinite;"></div>
+    
+    <!-- 🔥 VAST video -->
+    <video id="vast-video" muted autoplay playsinline webkit-playsinline style="
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  object-fit: contain;
+  background: #000;
+  display: none;
+"></video>
+    
+    <!-- Iframe contenido -->
+    <iframe id="iframe-player" src="" width="100%" height="100%" frameborder="0" allowfullscreen allow="autoplay; encrypted-media" style="display:none;border-radius:12px;"></iframe>
+  
+  </div>
+</div>
+
+<style>
+  .hide {
+    display: none !important;
+  }
+</style>
+
+<style>
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+</style>
+
+    <script>
+        class CombinedScraperPanel {
+            constructor() {
+                // Pool mejorado de APIs públicas de TMDB con más opciones
+                this.tmdbApiKeys = [
+                    // Bearer tokens más recientes
+                    'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNTkwMjg5NjA3NDY5NTcwOWQ3NzYzNTA1YmI4OGI0ZCIsInN1YiI6IjY0YWQzMGRhOGZlZTk1MDA4OGZlYmM1MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RCU98t08JcUd1VBVYCjjnBYpLGqHGmI4fgwtfP8QLgQ',
+                    'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzZjIwMzMwOGRjMzI5YjQ1ZjdkZGE4MzZhNjJjNWZjMCIsInN1YiI6IjY1OWFiOGJkNDFhNWMzMDEyOWI5N2YzNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.CoyuGC5NlzPuWyaMbK6f8YfVrz7cMcjNyBr7mT8bVQs',
+                    'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4MjY3YzMwMmY0OTMzMDc2NTAyYTMyNGVkOGE5M2Y4MCIsInN1YiI6IjY0NzRjYjE3ZTk3NTVkMDBlNzM0NTkzYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.JVQ8h3nEL0gfmF8HxH7MqKjnvz9XF0gzVz3mz1JzrVs',
+                    // API Keys de respaldo
+                    'api_key=05902896074695709d7763505bb88b4d',
+                    'api_key=f3bc6910e801d63a2fc38e2b7a64c073',
+                    'api_key=8267c302f4933076502a324ed8a93f80',
+                    'api_key=3f203308dc329b45f7dda836a62c5fc0',
+                    'api_key=24d863d54c86392e6078b351b18c0e4c',
+                    'api_key=4e44d9029b1270a757cddc766a1bcb63',
+                    'api_key=c7ac35f4c0d2fbe6f5f80ad30b5b4c7f',
+                    'api_key=9a3d2b8c1e5f7a4d6b9c2e8f1a7d3b6c'
+                ];
+                this.currentApiIndex = 0;
+                this.tmdbBaseUrl = 'https://api.themoviedb.org/3';
+                this.embed69BaseUrl = './';
+                this.cuevanaBaseUrl = './';
+                this.currentType = 'movie';
+                this.currentProvider = 'both';
+                this.currentItem = null;
+                this.currentTab = 'combined';
+                
+                // Variables de paginación
+                this.currentPage = 1;
+                this.totalPages = 1;
+                this.totalResults = 0;
+                this.currentQuery = '';
+                this.isSearchMode = false;
+                
+                // Cache para resultados
+                this.cache = new Map();
+                this.stats = {
+                    totalMovies: 0,
+                    totalSeries: 0,
+                    totalServers: 0,
+                    successRate: 99
+                };
+                
+                this.initializeElements();
+                this.bindEvents();
+                this.loadPopularContent();
+                this.updateStats();
+            }
+
+            getCurrentApiKey() {
+                return this.tmdbApiKeys[this.currentApiIndex];
+            }
+
+            rotateApiKey() {
+                this.currentApiIndex = (this.currentApiIndex + 1) % this.tmdbApiKeys.length;
+            }
+
+            async tmdbRequest(endpoint, params) {
+                const cacheKey = `${endpoint}?${JSON.stringify(params)}`;
+                if (this.cache.has(cacheKey)) {
+                    return this.cache.get(cacheKey);
+                }
+
+                params = params || {};
+                const maxRetries = this.tmdbApiKeys.length;
+                let lastError = null;
+
+                for (let attempt = 0; attempt < maxRetries; attempt++) {
+                    try {
+                        const apiKey = this.getCurrentApiKey();
+                        const isBearer = apiKey.indexOf('eyJ') === 0;
+                        
+                        const queryParams = new URLSearchParams();
+                        
+                        // Agregar parámetros básicos siempre
+                        queryParams.append('language', 'es-ES');
+                        
+                        for (const key in params) {
+                            if (params.hasOwnProperty(key)) {
+                                queryParams.append(key, params[key]);
+                            }
+                        }
+                        
+                        if (!isBearer) {
+                            const cleanKey = apiKey.replace('api_key=', '');
+                            queryParams.append('api_key', cleanKey);
+                        }
+
+                        const url = this.tmdbBaseUrl + endpoint + '?' + queryParams.toString();
+                        
+                        const headers = {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+                        };
+
+                        if (isBearer) {
+                            headers['Authorization'] = 'Bearer ' + apiKey;
+                        }
+
+                        console.log(`Intentando TMDB request ${attempt + 1}/${maxRetries}: ${endpoint}`);
+
+                        const response = await fetch(url, { 
+                            headers: headers,
+                            method: 'GET',
+                            mode: 'cors'
+                        });
+                        
+                        if (response.ok) {
+                            const data = await response.json();
+                            this.cache.set(cacheKey, data);
+                            console.log(`✅ TMDB request exitoso: ${data.results?.length || 'N/A'} resultados`);
+                            return data;
+                        } else if (response.status === 401 || response.status === 403) {
+                            console.log(`🔑 API key inválida, rotando... (${response.status})`);
+                            this.rotateApiKey();
+                            continue;
+                        } else {
+                            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                        }
+                    } catch (error) {
+                        console.error(`❌ Error en intento ${attempt + 1}:`, error.message);
+                        lastError = error;
+                        
+                        if (attempt < maxRetries - 1) {
+                            this.rotateApiKey();
+                            console.log(`🔄 Reintentando en ${1000 * (attempt + 1)}ms...`);
+                            await new Promise(resolve => setTimeout(resolve, 1000 * (attempt + 1)));
+                        }
+                    }
+                }
+
+                // Si todas las APIs fallan, intentar con configuración básica
+                console.log('🔄 Intentando configuración de respaldo...');
+                return await this.fallbackTmdbRequest(endpoint, params);
+            }
+
+            async fallbackTmdbRequest(endpoint, params) {
+                try {
+                    // Usar API key pública conocida como último recurso
+                    const fallbackKey = '05902896074695709d7763505bb88b4d';
+                    const queryParams = new URLSearchParams();
+                    
+                    queryParams.append('api_key', fallbackKey);
+                    queryParams.append('language', 'es-ES');
+                    
+                    // Parámetros básicos para contenido popular
+                    if (endpoint.includes('/discover/')) {
+                        queryParams.append('sort_by', 'popularity.desc');
+                        queryParams.append('page', params.page || '1');
+                    } else if (endpoint.includes('/search/')) {
+                        queryParams.append('query', params.query || 'action');
+                        queryParams.append('page', params.page || '1');
+                    }
+
+                    const url = `https://api.themoviedb.org/3${endpoint}?${queryParams.toString()}`;
+                    
+                    const response = await fetch(url, {
+                        method: 'GET',
+                        headers: {
+                            'Accept': 'application/json',
+                            'User-Agent': 'Mozilla/5.0 (compatible; TMDBScraper/1.0)'
+                        }
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        console.log('✅ Fallback request exitoso');
+                        return data;
+                    } else {
+                        throw new Error(`Fallback failed: ${response.status}`);
+                    }
+                } catch (error) {
+                    console.error('❌ Fallback también falló:', error);
+                    
+                    // Retornar datos demo si todo falla
+                    return this.getDemoData();
+                }
+            }
+
+            getDemoData() {
+                console.log('📱 Usando datos de demostración...');
+                return {
+                    results: [
+                        {
+                            id: 550,
+                            title: "El Club de la Pelea",
+                            overview: "Un empleado de oficina insomne y un fabricante de jabón forman un club de lucha clandestino.",
+                            poster_path: "/bptfVGEQuv6vDTIMVCHjJ9Dz8PX.jpg",
+                            release_date: "1999-10-15",
+                            vote_average: 8.4
+                        },
+                        {
+                            id: 13,
+                            title: "Forrest Gump",
+                            overview: "La historia de un hombre con un coeficiente intelectual bajo que logra cosas extraordinarias.",
+                            poster_path: "/arw2vcBveWOVZr6pxd9XTd1TdQa.jpg",
+                            release_date: "1994-07-06",
+                            vote_average: 8.5
+                        },
+                        {
+                            id: 155,
+                            title: "El Caballero Oscuro",
+                            overview: "Batman se enfrenta al Joker en esta secuela épica.",
+                            poster_path: "/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+                            release_date: "2008-07-18",
+                            vote_average: 9.0
+                        }
+                    ],
+                    total_pages: 1,
+                    total_results: 3,
+                    page: 1
+                };
+            }
+
+            initializeElements() {
+                this.searchInput = document.getElementById('searchInput');
+                this.searchBtn = document.getElementById('searchBtn');
+                this.clearBtn = document.getElementById('clearBtn');
+                this.results = document.getElementById('results');
+                this.modal = document.getElementById('linksModal');
+                this.modalTitle = document.getElementById('modalTitle');
+                this.closeModal = document.getElementById('closeModal');
+                this.seasonEpisodeSelector = document.getElementById('seasonEpisodeSelector');
+                this.seasonSelect = document.getElementById('seasonSelect');
+                this.episodeSelect = document.getElementById('episodeSelect');
+                this.getLinksBtn = document.getElementById('getLinksBtn');
+                this.linksContainer = document.getElementById('linksContainer');
+                
+                // Elementos de paginación
+                this.pagination = document.getElementById('pagination');
+                this.currentPageInfo = document.getElementById('currentPageInfo');
+                this.firstPageBtn = document.getElementById('firstPageBtn');
+                this.prevPageBtn = document.getElementById('prevPageBtn');
+                this.nextPageBtn = document.getElementById('nextPageBtn');
+                this.lastPageBtn = document.getElementById('lastPageBtn');
+                this.pageNumbers = document.getElementById('pageNumbers');
+            }
+
+            bindEvents() {
+                // Provider selector
+                document.querySelectorAll('.provider-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        document.querySelectorAll('.provider-btn').forEach(b => b.classList.remove('active'));
+                        e.target.classList.add('active');
+                        this.currentProvider = e.target.dataset.provider;
+                    });
+                });
+
+                // Type selector
+                document.querySelectorAll('.type-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+                        e.target.classList.add('active');
+                        this.currentType = e.target.dataset.type;
+                        this.currentPage = 1;
+                        this.isSearchMode = false;
+                        this.currentQuery = '';
+                        this.loadPopularContent();
+                    });
+                });
+
+                // Provider tabs en modal
+                document.querySelectorAll('.provider-tab').forEach(tab => {
+                    tab.addEventListener('click', (e) => {
+                        document.querySelectorAll('.provider-tab').forEach(t => t.classList.remove('active'));
+                        e.target.classList.add('active');
+                        this.currentTab = e.target.dataset.tab;
+                        this.displayCurrentTabLinks();
+                    });
+                });
+
+                // Search
+                this.searchBtn.addEventListener('click', () => this.search());
+                this.searchInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') this.search();
+                });
+
+                // Clear
+                this.clearBtn.addEventListener('click', () => {
+                    this.searchInput.value = '';
+                    this.currentPage = 1;
+                    this.isSearchMode = false;
+                    this.currentQuery = '';
+                    this.loadPopularContent();
+                });
+
+                // Modal
+                this.closeModal.addEventListener('click', () => this.closeLinksModal());
+                this.modal.addEventListener('click', (e) => {
+                    if (e.target === this.modal) this.closeLinksModal();
+                });
+
+                // Season/Episode selectors
+                this.seasonSelect.addEventListener('change', () => this.populateEpisodes());
+                this.getLinksBtn.addEventListener('click', () => this.getLinks());
+
+                // Pagination events
+                this.firstPageBtn.addEventListener('click', () => this.goToPage(1));
+                this.prevPageBtn.addEventListener('click', () => this.goToPage(this.currentPage - 1));
+                this.nextPageBtn.addEventListener('click', () => this.goToPage(this.currentPage + 1));
+                this.lastPageBtn.addEventListener('click', () => this.goToPage(this.totalPages));
+            }
+
+            updateStats() {
+                document.getElementById('totalMovies').textContent = this.stats.totalMovies.toLocaleString();
+                document.getElementById('totalSeries').textContent = this.stats.totalSeries.toLocaleString();
+                document.getElementById('totalServers').textContent = this.stats.totalServers.toLocaleString();
+                document.getElementById('successRate').textContent = this.stats.successRate + '%';
+            }
+
+            async loadPopularContent() {
+                this.showLoading();
+                this.hidePagination();
+
+                try {
+                    const endpoint = '/discover/' + this.currentType;
+                    
+                    const data = await this.tmdbRequest(endpoint, {
+                        language: 'es-ES',
+                        page: this.currentPage,
+                        sort_by: 'popularity.desc',
+                        'vote_count.gte': 10
+                    });
+                    
+                    this.totalPages = Math.min(data.total_pages || 1, 500);
+                    this.totalResults = data.total_results || 0;
+                    
+                    // Actualizar estadísticas
+                    if (this.currentType === 'movie') {
+                        this.stats.totalMovies = this.totalResults;
+                    } else {
+                        this.stats.totalSeries = this.totalResults;
+                    }
+                    this.updateStats();
+                    
+                    this.displayResults(data.results || []);
+                    this.showPagination();
+                    
+                } catch (error) {
+                    console.error('Error loading popular content:', error);
+                    this.showError('Error de conexión con TMDB. Verifica tu conexión a internet.');
+                }
+            }
+
+            async search() {
+                const query = this.searchInput.value.trim();
+                if (!query) return;
+
+                this.currentQuery = query;
+                this.isSearchMode = true;
+                this.currentPage = 1;
+                
+                await this.performSearch();
+            }
+
+            async performSearch() {
+                this.showLoading();
+
+                try {
+                    const data = await this.tmdbRequest(`/search/${this.currentType}`, {
+                        query: this.currentQuery,
+                        language: 'es-ES',
+                        page: this.currentPage
+                    });
+                    
+                    this.totalPages = Math.min(data.total_pages || 1, 500);
+                    this.totalResults = data.total_results || 0;
+                    
+                    if (data.results && data.results.length > 0) {
+                        this.displayResults(data.results);
+                        this.showPagination();
+                    } else {
+                        this.results.innerHTML = '<div class="no-results">No se encontraron resultados para tu búsqueda</div>';
+                        this.hidePagination();
+                    }
+                    
+                } catch (error) {
+                    this.showError('Error al buscar. Verifica tu conexión a internet.');
+                }
+            }
+
+            async goToPage(page) {
+                if (page < 1 || page > this.totalPages || page === this.currentPage) {
+                    return;
+                }
+                
+                this.currentPage = page;
+                
+                try {
+                    if (this.isSearchMode) {
+                        await this.performSearch();
+                    } else {
+                        await this.loadPopularContent();
+                    }
+                    
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } catch (error) {
+                    this.showError('Error al cargar la página');
+                }
+            }
+
+            showLoading() {
+                this.results.innerHTML = '<div class="loading">Cargando contenido...</div>';
+                this.hidePagination();
+            }
+
+            showError(message) {
+                this.results.innerHTML = `
+                    <div class="error-message">
+                        <i class="fas fa-exclamation-triangle"></i> ${message}
+                        <br><br>
+                        <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                            <button onclick="window.scraperPanel.loadPopularContent()" style="background: white; color: #e74c3c; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                                🔄 Reintentar
+                            </button>
+                            <button onclick="window.scraperPanel.loadDemoContent()" style="background: white; color: #3498db; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                                📱 Ver Demo
+                            </button>
+                            <button onclick="window.scraperPanel.testConnection()" style="background: white; color: #f39c12; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                                🔍 Diagnosticar
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            async loadDemoContent() {
+                this.showLoading();
+                
+                try {
+                    console.log('📱 Cargando contenido de demostración...');
+                    const demoData = this.getDemoData();
+                    
+                    this.totalPages = 1;
+                    this.totalResults = demoData.results.length;
+                    
+                    this.displayResults(demoData.results);
+                    this.hidePagination();
+                    
+                    // Mostrar mensaje informativo
+                    const infoDiv = document.createElement('div');
+                    infoDiv.innerHTML = `
+                        <div style="background: #3498db; color: white; padding: 15px; margin: 20px; border-radius: 8px; text-align: center;">
+                            <i class="fas fa-info-circle"></i> Mostrando contenido de demostración debido a problemas de conexión con TMDB
+                        </div>
+                    `;
+                    this.results.insertBefore(infoDiv, this.results.firstChild);
+                    
+                } catch (error) {
+                    console.error('Error loading demo content:', error);
+                    this.showError('Error al cargar contenido de demostración');
+                }
+            }
+
+            async testConnection() {
+                this.showLoading();
+                
+                const testResults = {
+                    tmdb: false,
+                    embed69: false,
+                    cuevana: false,
+                    internet: false
+                };
+
+                try {
+                    // Test internet connection
+                    console.log('🌐 Probando conexión a internet...');
+                    const internetTest = await fetch('https://httpbin.org/status/200', { 
+                        method: 'GET',
+                        mode: 'no-cors',
+                        cache: 'no-cache'
+                    });
+                    testResults.internet = true;
+                    console.log('✅ Internet: OK');
+                } catch (error) {
+                    console.log('❌ Internet: FAIL');
+                }
+
+                // Test TMDB API
+                try {
+                    console.log('🎬 Probando API de TMDB...');
+                    const tmdbTest = await fetch('https://api.themoviedb.org/3/movie/550?api_key=05902896074695709d7763505bb88b4d');
+                    if (tmdbTest.ok) {
+                        testResults.tmdb = true;
+                        console.log('✅ TMDB: OK');
+                    }
+                } catch (error) {
+                    console.log('❌ TMDB: FAIL');
+                }
+
+                // Test local scrapers
+                try {
+                    console.log('📺 Probando Embed69...');
+                    const embed69Test = await fetch('./embed69.php?id=tt0137523');
+                    testResults.embed69 = embed69Test.ok;
+                    console.log(testResults.embed69 ? '✅ Embed69: OK' : '❌ Embed69: FAIL');
+                } catch (error) {
+                    console.log('❌ Embed69: FAIL');
+                }
+
+                try {
+                    console.log('🎭 Probando Cuevana...');
+                    const cuevanaTest = await fetch('./cuevana.php?tmdb=550');
+                    testResults.cuevana = cuevanaTest.ok;
+                    console.log(testResults.cuevana ? '✅ Cuevana: OK' : '❌ Cuevana: FAIL');
+                } catch (error) {
+                    console.log('❌ Cuevana: FAIL');
+                }
+
+                // Mostrar resultados del diagnóstico
+                let diagnosticHtml = `
+                    <div style="background: white; padding: 30px; margin: 20px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                        <h3 style="color: #2c3e50; margin-bottom: 20px; text-align: center;">
+                            <i class="fas fa-stethoscope"></i> Diagnóstico de Conexión
+                        </h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                `;
+
+                const services = [
+                    { name: 'Internet', status: testResults.internet, icon: 'fas fa-globe' },
+                    { name: 'TMDB API', status: testResults.tmdb, icon: 'fas fa-film' },
+                    { name: 'Embed69', status: testResults.embed69, icon: 'fas fa-video' },
+                    { name: 'Cuevana', status: testResults.cuevana, icon: 'fas fa-play' }
+                ];
+
+                services.forEach(service => {
+                    const statusColor = service.status ? '#2ecc71' : '#e74c3c';
+                    const statusIcon = service.status ? 'fas fa-check-circle' : 'fas fa-times-circle';
+                    const statusText = service.status ? 'CONECTADO' : 'ERROR';
+                    
+                    diagnosticHtml += `
+                        <div style="background: ${statusColor}; color: white; padding: 15px; border-radius: 8px; text-align: center;">
+                            <i class="${service.icon}" style="font-size: 1.5rem; margin-bottom: 8px;"></i>
+                            <h4>${service.name}</h4>
+                            <div style="margin-top: 5px;">
+                                <i class="${statusIcon}"></i> ${statusText}
+                            </div>
+                        </div>
+                    `;
+                });
+
+                diagnosticHtml += `
+                        </div>
+                        <div style="margin-top: 20px; text-align: center;">
+                            <button onclick="window.scraperPanel.loadPopularContent()" style="background: #3498db; color: white; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; margin: 5px;">
+                                🔄 Reintentar Conexión
+                            </button>
+                            <button onclick="window.scraperPanel.loadDemoContent()" style="background: #f39c12; color: white; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; margin: 5px;">
+                                📱 Usar Demo
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                this.results.innerHTML = diagnosticHtml;
+                this.hidePagination();
+            }
+
+            async displayResults(items) {
+                if (items.length === 0) {
+                    this.results.innerHTML = '<div class="no-results">No se encontraron resultados</div>';
+                    this.hidePagination();
+                    return;
+                }
+
+                this.results.innerHTML = items.map(item => this.createItemCard(item)).join('');
+                
+                // Verificar disponibilidad de enlaces
+                this.checkLinksAvailability(items);
+            }
+
+            async checkLinksAvailability(items) {
+                const promises = items.map(async (item, index) => {
+                    try {
+                        const tmdbId = item.id;
+                        const imdbId = await this.getImdbId(tmdbId);
+                        
+                        const availability = {
+                            embed69: false,
+                            cuevana: false
+                        };
+
+                        // Verificar Embed69
+                        if (this.currentProvider === 'both' || this.currentProvider === 'embed69') {
+                            if (imdbId) {
+                                availability.embed69 = await this.checkEmbed69Links(imdbId);
+                            }
+                        }
+
+                        // Verificar Cuevana
+                        if (this.currentProvider === 'both' || this.currentProvider === 'cuevana') {
+                            availability.cuevana = await this.checkCuevanaLinks(tmdbId);
+                        }
+
+                        this.updateButtonState(index, availability, { tmdbId, imdbId }, item);
+                    } catch (error) {
+                        console.error('Error checking availability for item:', item.id, error);
+                        this.updateButtonState(index, { embed69: false, cuevana: false }, null, item);
+                    }
+                });
+
+                await Promise.all(promises);
+            }
+
+            async checkEmbed69Links(imdbId) {
+                try {
+                    const response = await fetch(`${this.embed69BaseUrl}embed69.php?id=${imdbId}`);
+                    const data = await response.json();
+                    
+                    if (data.error) return false;
+                    
+                    if (Array.isArray(data) && data.length > 0) {
+                        return data.some(langData => 
+                            langData.sortedEmbeds && 
+                            langData.sortedEmbeds.length > 0 &&
+                            langData.sortedEmbeds.some(server => server.link && server.link.trim() !== '')
+                        );
+                    }
+                    
+                    return false;
+                } catch (error) {
+                    return false;
+                }
+            }
+
+            async checkCuevanaLinks(tmdbId) {
+                try {
+                    const endpoint = this.currentType === 'movie' 
+                        ? `${this.cuevanaBaseUrl}cuevana.php?tmdb=${tmdbId}`
+                        : `${this.cuevanaBaseUrl}cuevana.php?tmdb=${tmdbId}&season=1&episode=1`;
+                        
+                    const response = await fetch(endpoint);
+                    const data = await response.json();
+                    
+                    if (data.error) return false;
+                    
+                    if (data.languages) {
+                        return Object.keys(data.languages).some(lang => 
+                            Object.keys(data.languages[lang]).length > 0
+                        );
+                    }
+                    
+                    return false;
+                } catch (error) {
+                    return false;
+                }
+            }
+
+            updateButtonState(index, availability, ids, item) {
+                const cards = document.querySelectorAll('.movie-card');
+                if (cards[index]) {
+                    const buttonContainer = cards[index].querySelector('.action-buttons');
+                    const badgesContainer = cards[index].querySelector('.provider-badges');
+                    
+                    // Limpiar botones anteriores
+                    buttonContainer.innerHTML = '';
+                    badgesContainer.innerHTML = '';
+                    
+                    const hasAnyLinks = availability.embed69 || availability.cuevana;
+                    
+                    if (hasAnyLinks) {
+                        // Agregar badges de disponibilidad
+                        if (availability.embed69) {
+                            badgesContainer.innerHTML += '<span class="provider-badge embed69">Embed69</span>';
+                        }
+                        if (availability.cuevana) {
+                            badgesContainer.innerHTML += '<span class="provider-badge cuevana">Cuevana</span>';
+                        }
+                        
+                        // Botón principal
+                        const mainButton = document.createElement('button');
+                        mainButton.className = 'action-button available';
+                        mainButton.innerHTML = '🔗 Ver Enlaces';
+                        mainButton.onclick = () => this.showLinks(item, ids, availability);
+                        buttonContainer.appendChild(mainButton);
+                        
+                    } else {
+                        const unavailableButton = document.createElement('button');
+                        unavailableButton.className = 'action-button not-available';
+                        unavailableButton.innerHTML = '<i class="fas fa-times"></i> No Disponible';
+                        buttonContainer.appendChild(unavailableButton);
+                    }
+                }
+            }
+
+            createItemCard(item) {
+                const title = item.title || item.name;
+                const releaseDate = item.release_date || item.first_air_date;
+                const year = releaseDate ? new Date(releaseDate).getFullYear() : 'N/A';
+                const poster = item.poster_path 
+                    ? `https://image.tmdb.org/t/p/w500${item.poster_path}`
+                    : 'https://via.placeholder.com/300x450?text=Sin+Poster';
+                const rating = item.vote_average ? item.vote_average.toFixed(1) : 'N/A';
+
+                return `
+                    <div class="movie-card">
+                        <img src="${poster}" alt="${title}" class="movie-poster" loading="lazy">
+                        <div class="movie-info">
+                            <h3 class="movie-title">${title}</h3>
+                            <div class="movie-year">${year}</div>
+                            <div class="imdb-id">TMDB ID: ${item.id}</div>
+                            <div class="movie-overview">${item.overview || 'Sin descripción disponible'}</div>
+                            <div class="movie-rating">
+                                <i class="fas fa-star"></i> ${rating}/10
+                            </div>
+                            <div class="provider-badges"></div>
+                            <div class="action-buttons">
+                                <button class="action-button checking">
+                                    <i class="fas fa-search"></i> Verificando...
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            async getImdbId(tmdbId) {
+                try {
+                    const data = await this.tmdbRequest(`/${this.currentType}/${tmdbId}/external_ids`);
+                    return data.imdb_id;
+                } catch (error) {
+                    return null;
+                }
+            }
+
+            async showLinks(item, ids, availability) {
+                this.currentItem = { ...item, ...ids, availability };
+                const title = item.title || item.name;
+                this.modalTitle.textContent = `📺 Enlaces para: ${title}`;
+
+                if (this.currentType === 'tv') {
+                    await this.setupSeasonEpisodeSelector(item.id);
+                    this.seasonEpisodeSelector.style.display = 'flex';
+                    this.linksContainer.innerHTML = '<p>👆 Selecciona una temporada y episodio para ver los enlaces.</p>';
+                } else {
+                    this.seasonEpisodeSelector.style.display = 'none';
+                    await this.getMovieLinks();
+                }
+
+                this.modal.style.display = 'block';
+            }
+
+            async setupSeasonEpisodeSelector(tvId) {
+                try {
+                    const data = await this.tmdbRequest(`/tv/${tvId}`, {
+                        language: 'es-ES'
+                    });
+                    
+                    this.seasonSelect.innerHTML = '<option value="">Seleccionar temporada...</option>';
+                    
+                    for (let i = 1; i <= data.number_of_seasons; i++) {
+                        this.seasonSelect.innerHTML += `<option value="${i}">Temporada ${i}</option>`;
+                    }
+                } catch (error) {
+                    console.error('Error setting up season selector:', error);
+                }
+            }
+
+            async populateEpisodes() {
+                const season = this.seasonSelect.value;
+                if (!season) return;
+
+                try {
+                    const data = await this.tmdbRequest(`/tv/${this.currentItem.id}/season/${season}`, {
+                        language: 'es-ES'
+                    });
+                    
+                    this.episodeSelect.innerHTML = '<option value="">Seleccionar episodio...</option>';
+                    
+                    data.episodes.forEach(episode => {
+                        this.episodeSelect.innerHTML += `<option value="${episode.episode_number}">Episodio ${episode.episode_number}: ${episode.name}</option>`;
+                    });
+                } catch (error) {
+                    console.error('Error populating episodes:', error);
+                }
+            }
+
+            async getLinks() {
+                const season = this.seasonSelect.value;
+                const episode = this.episodeSelect.value;
+                
+                if (!season || !episode) {
+                    alert('Por favor selecciona temporada y episodio');
+                    return;
+                }
+
+                await this.getSeriesLinks(season, episode);
+            }
+
+            async getMovieLinks() {
+                this.linksContainer.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i> Obteniendo enlaces...</div>';
+                
+                const allLinks = {
+                    embed69: null,
+                    cuevana: null
+                };
+
+                try {
+                    // Obtener enlaces de Embed69
+                    if (this.currentItem.availability.embed69 && this.currentItem.imdbId) {
+                        try {
+                            const response = await fetch(`${this.embed69BaseUrl}embed69.php?id=${this.currentItem.imdbId}`);
+                            const data = await response.json();
+                            if (!data.error) {
+                                allLinks.embed69 = data;
+                            }
+                        } catch (error) {
+                            console.error('Error getting Embed69 links:', error);
+                        }
+                    }
+
+                    // Obtener enlaces de Cuevana
+                    if (this.currentItem.availability.cuevana && this.currentItem.tmdbId) {
+                        try {
+                            const response = await fetch(`${this.cuevanaBaseUrl}cuevana.php?tmdb=${this.currentItem.tmdbId}`);
+                            const data = await response.json();
+                            if (!data.error) {
+                                allLinks.cuevana = data;
+                            }
+                        } catch (error) {
+                            console.error('Error getting Cuevana links:', error);
+                        }
+                    }
+
+                    this.currentItem.allLinks = allLinks;
+                    this.displayCurrentTabLinks();
+                    
+                } catch (error) {
+                    console.error('Error getting movie links:', error);
+                    this.linksContainer.innerHTML = '<div class="error-message">❌ Error al obtener enlaces</div>';
+                }
+            }
+
+            async getSeriesLinks(season, episode) {
+                this.linksContainer.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i> Obteniendo enlaces...</div>';
+                
+                const allLinks = {
+                    embed69: null,
+                    cuevana: null
+                };
+
+                try {
+                    // Obtener enlaces de Embed69
+                    if (this.currentItem.availability.embed69 && this.currentItem.imdbId) {
+                        try {
+                            const response = await fetch(`${this.embed69BaseUrl}embed69.php?id=${this.currentItem.imdbId}&season=${season}&episode=${episode}`);
+                            const data = await response.json();
+                            if (!data.error) {
+                                allLinks.embed69 = data;
+                            }
+                        } catch (error) {
+                            console.error('Error getting Embed69 links:', error);
+                        }
+                    }
+
+                    // Obtener enlaces de Cuevana
+                    if (this.currentItem.availability.cuevana && this.currentItem.tmdbId) {
+                        try {
+                            const response = await fetch(`${this.cuevanaBaseUrl}cuevana.php?tmdb=${this.currentItem.tmdbId}&season=${season}&episode=${episode}`);
+                            const data = await response.json();
+                            if (!data.error) {
+                                allLinks.cuevana = data;
+                            }
+                        } catch (error) {
+                            console.error('Error getting Cuevana links:', error);
+                        }
+                    }
+
+                    this.currentItem.allLinks = allLinks;
+                    this.displayCurrentTabLinks();
+                    
+                } catch (error) {
+                    console.error('Error getting series links:', error);
+                    this.linksContainer.innerHTML = '<div class="error-message">❌ Error al obtener enlaces</div>';
+                }
+            }
+
+            displayCurrentTabLinks() {
+                if (!this.currentItem || !this.currentItem.allLinks) {
+                    this.linksContainer.innerHTML = '<div class="no-results">No hay enlaces disponibles</div>';
+                    return;
+                }
+
+                const { allLinks } = this.currentItem;
+                
+                if (this.currentTab === 'combined') {
+                    this.displayCombinedLinks(allLinks);
+                } else if (this.currentTab === 'embed69') {
+                    this.displayEmbed69Links(allLinks.embed69);
+                } else if (this.currentTab === 'cuevana') {
+                    this.displayCuevanaLinks(allLinks.cuevana);
+                }
+            }
+
+            displayCombinedLinks(allLinks) {
+                let html = '';
+                let totalServers = 0;
+
+                // Mostrar enlaces de Embed69
+                if (allLinks.embed69) {
+                    html += '<h3 style="color: #2ecc71; margin-bottom: 15px;"><i class="fas fa-video"></i> Embed69</h3>';
+                    html += this.formatEmbed69Links(allLinks.embed69);
+                    totalServers += this.countEmbed69Servers(allLinks.embed69);
+                }
+
+                // Mostrar enlaces de Cuevana
+                if (allLinks.cuevana) {
+                    if (html) html += '<hr style="margin: 30px 0; border: 1px solid #e1e5e9;">';
+                    html += '<h3 style="color: #e74c3c; margin-bottom: 15px;"><i class="fas fa-film"></i> Cuevana</h3>';
+                    html += this.formatCuevanaLinks(allLinks.cuevana);
+                    totalServers += this.countCuevanaServers(allLinks.cuevana);
+                }
+
+                if (html) {
+                    html = `<div class="success-message"><i class="fas fa-check-circle"></i> Se encontraron ${totalServers} servidores disponibles</div>` + html;
+                    this.stats.totalServers = totalServers;
+                    this.updateStats();
+                } else {
+                    html = '<div class="no-results">❌ No se encontraron enlaces válidos</div>';
+                }
+
+                this.linksContainer.innerHTML = html;
+            }
+
+            displayEmbed69Links(data) {
+                if (!data) {
+                    this.linksContainer.innerHTML = '<div class="no-results">❌ No hay enlaces disponibles en Embed69</div>';
+                    return;
+                }
+                
+                const html = this.formatEmbed69Links(data);
+                this.linksContainer.innerHTML = html || '<div class="no-results">❌ No se encontraron enlaces válidos en Embed69</div>';
+            }
+
+            displayCuevanaLinks(data) {
+                if (!data) {
+                    this.linksContainer.innerHTML = '<div class="no-results">❌ No hay enlaces disponibles en Cuevana</div>';
+                    return;
+                }
+                
+                const html = this.formatCuevanaLinks(data);
+                this.linksContainer.innerHTML = html || '<div class="no-results">❌ No se encontraron enlaces válidos en Cuevana</div>';
+            }
+
+            formatEmbed69Links(data) {
+                if (!Array.isArray(data) || data.length === 0) return '';
+
+                let html = '';
+
+                data.forEach(languageData => {
+                    const languageInfo = this.getLanguageInfo(languageData.video_language || 'UNK');
+                    const servers = languageData.sortedEmbeds || [];
+
+                    if (servers.length > 0) {
+                        html += `
+                            <div class="language-section">
+                                <div class="language-header">
+                                    ${languageInfo.flag} ${languageInfo.name}
+                                    <span class="server-count">${servers.length} servidor${servers.length > 1 ? 'es' : ''}</span>
+                                </div>
+                                <div class="links-list">
+                        `;
+
+                        servers.forEach(server => {
+                            if (server.link && server.link.trim() !== '') {
+                                html += `
+                                    <div class="link-item">
+                                        <div class="server-info">
+                                            <span class="server-name"><i class="fas fa-server"></i> ${server.server || 'Servidor desconocido'}</span>
+                                        </div>
+                                        <div class="link-buttons">
+                                            <button class="view-link-btn" onclick="abrirReproductorInterno('${server.link}')">
+                                                <i class="fas fa-play"></i> Ver
+                                            </button>
+                                            <button class="copy-btn" onclick="copiarEnlace('${server.link}')">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                `;
+                            }
+                        });
+
+                        html += `
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+
+                return html;
+            }
+
+            formatCuevanaLinks(data) {
+                if (!data || !data.languages) return '';
+
+                let html = '';
+
+                Object.entries(data.languages).forEach(([langKey, servers]) => {
+                    if (Object.keys(servers).length > 0) {
+                        const languageInfo = this.getCuevanaLanguageInfo(langKey);
+                        
+                        html += `
+                            <div class="language-section">
+                                <div class="language-header">
+                                    ${languageInfo.flag} ${languageInfo.name}
+                                    <span class="server-count">${Object.keys(servers).length} servidor${Object.keys(servers).length > 1 ? 'es' : ''}</span>
+                                </div>
+                                <div class="links-list">
+                        `;
+
+                        Object.entries(servers).forEach(([serverName, serverUrl]) => {
+                            html += `
+                                <div class="link-item">
+                                    <div class="server-info">
+                                        <span class="server-name"><i class="fas fa-server"></i> ${serverName}</span>
+                                    </div>
+                                    <div class="link-buttons">
+                                        <button class="view-link-btn" onclick="abrirReproductorInterno('${serverUrl}')">
+                                            <i class="fas fa-play"></i> Ver
+                                        </button>
+                                        <button class="copy-btn" onclick="copiarEnlace('${serverUrl}')">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            `;
+                        });
+
+                        html += `
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+
+                return html;
+            }
+
+            countEmbed69Servers(data) {
+                if (!Array.isArray(data)) return 0;
+                
+                return data.reduce((total, langData) => {
+                    const servers = langData.sortedEmbeds || [];
+                    return total + servers.filter(server => server.link && server.link.trim() !== '').length;
+                }, 0);
+            }
+
+            countCuevanaServers(data) {
+                if (!data || !data.languages) return 0;
+                
+                return Object.values(data.languages).reduce((total, servers) => {
+                    return total + Object.keys(servers).length;
+                }, 0);
+            }
+
+            getLanguageInfo(code) {
+                const languages = {
+                    'LAT': { name: 'Latino', flag: '🇲🇽' },
+                    'ESP': { name: 'Español', flag: '🇪🇸' },
+                    'SUB': { name: 'Subtitulado', flag: '🇺🇸' },
+                    'EN': { name: 'Inglés', flag: '🇺🇸' },
+                    'FR': { name: 'Francés', flag: '🇫🇷' },
+                    'DE': { name: 'Alemán', flag: '🇩🇪' },
+                    'IT': { name: 'Italiano', flag: '🇮🇹' },
+                    'PT': { name: 'Portugués', flag: '🇵🇹' },
+                    'RU': { name: 'Ruso', flag: '🇷🇺' },
+                    'JA': { name: 'Japonés', flag: '🇯🇵' },
+                    'KO': { name: 'Coreano', flag: '🇰🇷' },
+                    'ZH': { name: 'Chino', flag: '🇨🇳' },
+                    'UNK': { name: 'Idioma desconocido', flag: '🌐' }
+                };
+                return languages[code.toUpperCase()] || languages['UNK'];
+            }
+
+            getCuevanaLanguageInfo(key) {
+                const languages = {
+                    'latino': { name: 'Latino', flag: '🇲🇽' },
+                    'espanol': { name: 'Español', flag: '🇪🇸' },
+                    'subtitulado': { name: 'Subtitulado', flag: '🇺🇸' },
+                    'descargar': { name: 'Descargar', flag: '💾' }
+                };
+                return languages[key] || { name: key.charAt(0).toUpperCase() + key.slice(1), flag: '🌐' };
+            }
+
+            showPagination() {
+                if (!this.pagination) return;
+                
+                this.pagination.style.display = 'block';
+                this.updatePaginationInfo();
+                this.updatePaginationControls();
+            }
+
+            hidePagination() {
+                if (!this.pagination) return;
+                
+                this.pagination.style.display = 'none';
+            }
+
+            updatePaginationInfo() {
+                if (!this.currentPageInfo) return;
+                
+                const itemsPerPage = 20;
+                const start = ((this.currentPage - 1) * itemsPerPage) + 1;
+                const end = Math.min(this.currentPage * itemsPerPage, this.totalResults);
+                
+                this.currentPageInfo.innerHTML = `
+                    Página ${this.currentPage} de ${this.totalPages.toLocaleString()} 
+                    (${start.toLocaleString()} - ${end.toLocaleString()} de ${this.totalResults.toLocaleString()} resultados)
+                `;
+            }
+
+            updatePaginationControls() {
+                if (!this.firstPageBtn || !this.prevPageBtn || !this.nextPageBtn || !this.lastPageBtn) return;
+                
+                this.firstPageBtn.disabled = this.currentPage === 1;
+                this.prevPageBtn.disabled = this.currentPage === 1;
+                this.nextPageBtn.disabled = this.currentPage === this.totalPages;
+                this.lastPageBtn.disabled = this.currentPage === this.totalPages;
+
+                this.generatePageNumbers();
+            }
+
+            generatePageNumbers() {
+                if (!this.pageNumbers) return;
+                
+                const maxVisible = 7;
+                const current = this.currentPage;
+                const total = this.totalPages;
+                let pages = [];
+
+                if (total <= maxVisible) {
+                    for (let i = 1; i <= total; i++) {
+                        pages.push(i);
+                    }
+                } else {
+                    if (current <= 4) {
+                        pages = [1, 2, 3, 4, 5, '...', total];
+                    } else if (current >= total - 3) {
+                        pages = [1, '...', total - 4, total - 3, total - 2, total - 1, total];
+                    } else {
+                        pages = [1, '...', current - 1, current, current + 1, '...', total];
+                    }
+                }
+
+                this.pageNumbers.innerHTML = pages.map(page => {
+                    if (page === '...') {
+                        return '<span class="page-ellipsis">...</span>';
+                    } else {
+                        const isActive = page === current ? ' active' : '';
+                        return `<button class="page-number${isActive}" onclick="window.scraperPanel.goToPage(${page})">${page}</button>`;
+                    }
+                }).join('');
+            }
+
+            closeLinksModal() {
+                this.modal.style.display = 'none';
+                this.currentItem = null;
+                this.currentTab = 'combined';
+                
+                // Resetear tabs
+                document.querySelectorAll('.provider-tab').forEach(t => t.classList.remove('active'));
+                document.querySelector('.provider-tab[data-tab="combined"]').classList.add('active');
+            }
+        }
+
+        // Funciones globales para el reproductor y copiar enlaces
+        function abrirReproductorInterno(enlace) {
+            cerrarModalInterno();
+            document.getElementById("modal-close-x").classList.add("hide");
+            const modal = document.getElementById('modal-player');
+            const iframe = document.getElementById('iframe-player');
+            const loader = document.getElementById('loader-interno');
+
+            iframe.style.display = 'none';
+            loader.style.display = 'block';
+            modal.style.display = 'flex';
+
+            iframe.src = enlace;
+            iframe.onload = () => {
+                loader.style.display = 'none';
+                iframe.style.display = 'block';
+            };
+
+            document.addEventListener('keydown', cerrarConEscInterno);
+        }
+
+        function cerrarModalInterno() {
+            const modal = document.getElementById('modal-player');
+            const iframe = document.getElementById('iframe-player');
+            const loader = document.getElementById('loader-interno');
+
+            modal.style.display = 'none';
+            iframe.src = '';
+            loader.style.display = 'none';
+            iframe.style.display = 'none';
+
+            document.removeEventListener('keydown', cerrarConEscInterno);
+            document.getElementById("modal-close-x").classList.add("hide");
+        }
+
+        function cerrarConEscInterno(e) {
+            if (e.key === "Escape") cerrarModalInterno();
+        }
+
+        function copiarEnlace(enlace) {
+            navigator.clipboard.writeText(enlace).then(() => {
+                // Crear notificación de éxito
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: #2ecc71;
+                    color: white;
+                    padding: 15px 20px;
+                    border-radius: 8px;
+                    z-index: 10000;
+                    font-weight: 600;
+                    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+                    animation: slideInRight 0.3s ease;
+                `;
+                notification.innerHTML = '<i class="fas fa-check"></i> Enlace copiado al portapapeles';
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.style.animation = 'slideOutRight 0.3s ease';
+                    setTimeout(() => {
+                        document.body.removeChild(notification);
+                    }, 300);
+                }, 2000);
+            }).catch(() => {
+                alert("Enlace copiado:\n" + enlace);
+            });
+        }
+
+        // Agregar animaciones CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInRight {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            
+            @keyframes slideOutRight {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Inicializar la aplicación
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                window.scraperPanel = new CombinedScraperPanel();
+                console.log('🎬 Panel Combinado inicializado correctamente');
+            } catch (error) {
+                console.error('Error al inicializar:', error);
+                document.getElementById('results').innerHTML = 
+                    '<div class="error-message">❌ Error al inicializar la aplicación: ' + error.message + '</div>';
+            }
+        });
+    </script>
+    
+<script>
+const vastURL = "https://vast.ufouxbwn.com/vast.php?partner_id=6217067&format=2&referrer=embed69.com";
+
+const modal = document.getElementById("modal-player");
+const video = document.getElementById("vast-video");
+const iframe = document.getElementById("iframe-player");
+const loader = document.getElementById("loader-interno");
+
+let clickUrl = null;
+let impressions = [];
+let clickTrackings = [];
+let trackedClick = false;
+let trackedImpressions = false;
+
+function cerrarModalInterno() {
+  modal.style.display = "none";
+  video.pause(); video.src = ""; video.style.display = "none";
+  iframe.src = ""; iframe.style.display = "none";
+  loader.style.display = "none";
+  document.body.style.overflow = "";
+  removeBotones();
+}
+
+function createTrackingIframe(url) {
+  const iframe = document.createElement('iframe');
+  iframe.src = url;
+  iframe.style.display = 'none';
+  iframe.width = 1;
+  iframe.height = 1;
+  iframe.loading = 'eager';
+  iframe.title = 'tracking pixel';
+  iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin');
+  iframe.setAttribute('data-tracking', 'true');
+  document.body.appendChild(iframe);
+  setTimeout(() => iframe.remove(), 5000);
+}
+
+function trackImpressions() {
+  if (trackedImpressions) return;
+  trackedImpressions = true;
+
+  impressions.forEach(createTrackingIframe);
+  setTimeout(() => {
+    impressions.forEach(createTrackingIframe);
+  }, 7000);
+}
+
+function trackClickOnce() {
+  if (trackedClick) return;
+  trackedClick = true;
+
+  if (clickUrl) createTrackingIframe(clickUrl);
+  clickTrackings.forEach(createTrackingIframe);
+}
+
+function agregarBotones() {
+  // Cerrar
+  const cerrarBtn = document.createElement("button");
+  cerrarBtn.id = "close-vast-btn";
+  cerrarBtn.style.cssText = `
+    position:absolute;top:10px;right:10px;background:rgba(0,0,0,0.6);
+    color:#fff;border:none;padding:4px 8px;border-radius:4px;
+    font-size:14px;z-index:10000;cursor:pointer;`;
+  cerrarBtn.disabled = true;
+  cerrarBtn.innerText = "✖ Cerrar en 5s";
+  modal.appendChild(cerrarBtn);
+
+  let countdown = 5;
+  const intv = setInterval(() => {
+    countdown--;
+    cerrarBtn.innerText = countdown > 0 ? `✖ Cerrar en ${countdown}s` : "✖ Cerrar";
+    if (countdown <= 0) {
+      clearInterval(intv);
+      cerrarBtn.disabled = false;
+    }
+  }, 1000);
+
+  cerrarBtn.onclick = () => {
+    finalizarAnuncio();
+  };
+
+  // Volumen
+  const muteBtn = document.createElement("button");
+  muteBtn.id = "mute-toggle-btn";
+  muteBtn.style.cssText = `
+    position:absolute;top:10px;left:10px;background:rgba(0,0,0,0.6);
+    color:#fff;border:none;padding:4px 8px;border-radius:4px;
+    font-size:14px;z-index:10000;cursor:pointer;`;
+  muteBtn.innerText = "🔇";
+  muteBtn.onclick = () => {
+    video.muted = !video.muted;
+    muteBtn.innerText = video.muted ? "🔇" : "🔊";
+  };
+  modal.appendChild(muteBtn);
+}
+
+function removeBotones() {
+  const cerrarBtn = document.getElementById("close-vast-btn");
+  const muteBtn = document.getElementById("mute-toggle-btn");
+  if (cerrarBtn) cerrarBtn.remove();
+  if (muteBtn) muteBtn.remove();
+}
+
+function finalizarAnuncio() {
+  video.pause(); video.src = ""; video.style.display = "none";
+  iframe.style.display = "block";
+  removeBotones();
+  document.getElementById("modal-close-x").classList.remove("hide");
+}
+
+async function reproducirAnuncio() {
+  const res = await fetch(vastURL);
+  const xml = await res.text();
+  const doc = new DOMParser().parseFromString(xml, "application/xml");
+
+  const media = doc.querySelector("MediaFile");
+  const click = doc.querySelector("ClickThrough");
+
+  impressions = [...doc.querySelectorAll("Impression")].map(e => e.textContent.trim());
+  clickTrackings = [...doc.querySelectorAll('Tracking[event="click"]')].map(e => e.textContent.trim());
+  clickUrl = click?.textContent.trim() || null;
+
+  const src = media?.textContent.trim();
+  if (!src) throw new Error("❌ No hay video en el VAST");
+
+  video.src = src;
+  video.style.display = "block";
+  loader.style.display = "none";
+  trackedClick = false;
+  trackedImpressions = false;
+
+  agregarBotones();
+  trackImpressions();
+  trackClickOnce();
+
+  video.onclick = () => {
+    if (clickUrl) window.open(clickUrl, "_blank") || (location.href = clickUrl);
+  };
+
+  await video.play().catch(() => {});
+  return new Promise(resolve => {
+    video.onended = resolve;
+    setTimeout(resolve, 15000); // fallback
+  });
+}
+
+async function abrirReproductorInterno(enlace) {
+  cerrarModalInterno(); // limpieza inicial
+
+  modal.style.display = "flex";
+  loader.style.display = "block";
+  iframe.src = enlace;
+  iframe.style.display = "none";
+  document.body.style.overflow = "hidden";
+
+  try {
+    await reproducirAnuncio();
+  } catch (e) {
+    console.warn("❌ Falló el anuncio VAST:", e);
+  }
+
+  finalizarAnuncio();
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") cerrarModalInterno();
+});
+</script>
+    
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"96c608b7cfaf90c1","version":"2025.7.0","r":1,"token":"072bcb7761924e00a4d0d34ddea7bce5","serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}' crossorigin="anonymous"></script>
+</body>
+</html>      height: 12px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #1c1c1c;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+      border-radius: 10px;
+    }
+    /* Marquee animation */
+    .marquee {
+      position: relative;
+      overflow: hidden;
+      background-color: #111010;
+      color: #ffffff;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .marquee-content {
+      white-space: nowrap;
+      display: inline-block;
+      animation: marquee 27s linear infinite;
+    }
+    @keyframes marquee {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+  </style>
+ </head>
+ <body class="min-h-screen flex flex-col pt-6">
+  <!-- Marquee -->
+  <div class="marquee">
+   <div class="marquee-content">
+    Últimas novedades en Clan ORG • Películas, Series, Animes y Doramas en HD • ¡Disfruta la mejor experiencia de streaming!
+   </div>
+  </div>
+  <!-- Search -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 mb-12">
+   <div class="max-w-xl mx-auto">
+    <input aria-label="Buscar títulos" autocomplete="off" class="w-full px-4 py-3 rounded-md border border-gray-700 bg-[#1c1c1c] text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent" id="searchInput" placeholder="Escribe para buscar títulos..." type="text"/>
+   </div>
+   <!-- Tabs -->
+   <div class="mt-10">
+    <div class="flex justify-center space-x-4 border-b border-gray-700">
+     <button aria-controls="panel-peliculas" aria-selected="true" class="tab-button py-2 px-4 text-cyan-400 border-b-2 border-cyan-400 font-semibold focus:outline-none" data-tab="peliculas" id="tab-peliculas" role="tab" tabindex="0">
+      PELÍCULAS
+     </button>
+     <button aria-controls="panel-series" aria-selected="false" class="tab-button py-2 px-4 text-gray-400 hover:text-cyan-400 focus:outline-none" data-tab="series" id="tab-series" role="tab" tabindex="-1">
+      SERIES
+     </button>
+     <button aria-controls="panel-animes" aria-selected="false" class="tab-button py-2 px-4 text-gray-400 hover:text-cyan-400 focus:outline-none" data-tab="animes" id="tab-animes" role="tab" tabindex="-1">
+      ANIMES
+     </button>
+     <button aria-controls="panel-doramas" aria-selected="false" class="tab-button py-2 px-4 text-gray-400 hover:text-cyan-400 focus:outline-none" data-tab="doramas" id="tab-doramas" role="tab" tabindex="-1">
+      DORAMAS
+     </button>
+    </div>
+    <!-- Tab Panels -->
+    <section aria-labelledby="tab-peliculas" class="tab-panel mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6" id="panel-peliculas" role="tabpanel" tabindex="0">
+     <a class="group block rounded-lg bg-[#1c1c1c] shadow-lg overflow-hidden hover:shadow-cyan-500/50 transition" data-title="Pelotas en juego (2007)" href="https://cuevana3.rs/pelicula/pelotas-en-juego">
+      <img alt="Cartel de la película Pelotas en juego (2007), con jugadores de fútbol en acción en un campo verde" class="w-full h-auto object-cover" height="231" loading="lazy" src="https://image.tmdb.org/t/p/w154/u9aZyGeRnfbO4EdohOtuc0Txbvo.jpg" width="154"/>
+      <div class="p-3">
+       <p class="text-gray-200 font-semibold truncate">
+        Pelotas en juego (2007)
+       </p>
+       <div class="flex items-center mt-1 text-yellow-400">
+        <i class="fas fa-star mr-1">
+        </i>
+        <span class="text-sm font-medium">
+         5.264/10
+        </span>
+       </div>
+      </div>
+     </a>
+     <a class="group block rounded-lg bg-[#1c1c1c] shadow-lg overflow-hidden hover:shadow-cyan-500/50 transition" data-title="Dumbo (2019)" href="https://cuevana3.rs/pelicula/dumbo2019">
+      <img alt="Cartel de la película Dumbo (2019), elefante volador con orejas grandes en un circo colorido" class="w-full h-auto object-cover" height="231" loading="lazy" src="https://image.tmdb.org/t/p/w154/tLbijKcpZfFRgKTNs1HBWFrEGqp.jpg" width="154"/>
+      <div class="p-3">
+       <p class="text-gray-200 font-semibold truncate">
+        Dumbo (2019)
+       </p>
+       <div class="flex items-center mt-1 text-yellow-400">
+        <i class="fas fa-star mr-1">
+        </i>
+        <span class="text-sm font-medium">
+         6.599/10
+        </span>
+       </div>
+      </div>
+     </a>
+     <a class="group block rounded-lg bg-[#1c1c1c] shadow-lg overflow-hidden hover:shadow-cyan-500/50 transition" data-title="Maléfica: Maestra del mal (2019)" href="https://cuevana3.rs/pelicula/malefica-maestra-del-mal">
+      <img alt="Cartel de la película Maléfica: Maestra del mal (2019), retrato oscuro de una mujer con cuernos y mirada intensa" class="w-full h-auto object-cover" height="231" loading="lazy" src="https://image.tmdb.org/t/p/w154/eZOkXqHXWCKytd78TggAtJ0M3gU.jpg" width="154"/>
+      <div class="p-3">
+       <p class="text-gray-200 font-semibold truncate">
+        Maléfica: Maestra del mal (2019)
+       </p>
+       <div class="flex items-center mt-1 text-yellow-400">
+        <i class="fas fa-star mr-1">
+        </i>
+        <span class="text-sm font-medium">
+         7.303/10
+        </span>
+       </div>
+      </div>
+     </a>
+     <a class="group block rounded-lg bg-[#1c1c1c] shadow-lg overflow-hidden hover:shadow-cyan-500/50 transition" data-title="Aeon Flux (2005)" href="https://cuevana3.rs/pelicula/aeon-flux">
+      <img alt="Cartel de la película Aeon Flux (2005), mujer con traje negro futurista y fondo tecnológico" class="w-full h-auto object-cover" height="231" loading="lazy" src="https://image.tmdb.org/t/p/w154/4Ysz1Fh5p9TWt2Mhtg5BUJzpR5J.jpg" width="154"/>
+      <div class="p-3">
+       <p class="text-gray-200 font-semibold truncate">
+        Aeon Flux (2005)
+       </p>
+       <div class="flex items-center mt-1 text-yellow-400">
+        <i class="fas fa-star mr-1">
+        </i>
+        <span class="text-sm font-medium">
+         5.6/10
+        </span>
+       </div>
+      </div>
+     </a>
+     <a class="group block rounded-lg bg-[#1c1c1c] shadow-lg overflow-hidden hover:shadow-cyan-500/50 transition" data-title="Pelotas en juego (2007)" href="https://cuevana3.rs/pelicula/pelotas-en-juego">
+      <img alt="Cartel de la película Pelotas en juego (2007), con jugadores de fútbol en acción en un campo verde" class="w-full h-auto object-cover" height="231" loading="lazy" src="https://image.tmdb.org/t/p/w154/u9aZyGeRnfbO4EdohOtuc0Txbvo.jpg" width="154"/>
+      <div class="p-3">
+       <p class="text-gray-200 font-semibold truncate">
+        Pelotas en juego (2007)
+       </p>
+       <div class="flex items-center mt-1 text-yellow-400">
+        <i class="fas fa-star mr-1">
+        </i>
+        <span class="text-sm font-medium">
+         5.264/10
+        </span>
+       </div>
+      </div>
+     </a>
+    </section>
+    <section aria-labelledby="tab-series" class="tab-panel hidden mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6" id="panel-series" role="tabpanel" tabindex="0">
+     <a class="group block rounded-lg bg-[#1c1c1c] shadow-lg overflow-hidden hover:shadow-cyan-500/50 transition" data-title="WWE: Unreal (2025)" href="https://cuevana3.rs/serie/wwe-unreal">
+      <img alt="Cartel de la serie WWE: Unreal (2025), luchadores en acción en un ring iluminado" class="w-full h-auto object-cover" height="231" loading="lazy" src="https://image.tmdb.org/t/p/w154/4wfySL6AUTwXRCiL6tumMq9oFam.jpg" width="154"/>
+      <div class="p-3">
+       <p class="text-gray-200 font-semibold truncate">
+        WWE: Unreal (2025)
+       </p>
+       <div class="flex items-center mt-1 text-yellow-400">
+        <i class="fas fa-star mr-1">
+        </i>
+        <span class="text-sm font-medium">
+         8.4/10
+        </span>
+       </div>
+      </div>
+     </a>
+     <a class="group block rounded-lg bg-[#1c1c1c] shadow-lg overflow-hidden hover:shadow-cyan-500/50 transition" data-title="In the Eye of the Storm (2024)" href="https://cuevana3.rs/serie/in-the-eye-of-the-storm">
+      <img alt="Cartel de la serie In the Eye of the Storm (2024), paisaje tormentoso con silueta de persona" class="w-full h-auto object-cover" height="231" loading="lazy" src="https://image.tmdb.org/t/p/w154/1rfA0TuQztxbFkt5RfS67ilQ4TS.jpg" width="154"/>
+      <div class="p-3">
+       <p class="text-gray-200 font-semibold truncate">
+        In the Eye of the Storm (2024)
+       </p>
+       <div class="flex items-center mt-1 text-yellow-400">
+        <i class="fas fa-star mr-1">
+        </i>
+        <span class="text-sm font-medium">
+         7.9/10
+        </span>
+       </div>
+      </div>
+     </a>
+     <a class="group block rounded-lg bg-[#1c1c1c] shadow-lg overflow-hidden hover:shadow-cyan-500/50 transition" data-title="Jesus (2018-2019)" href="https://cuevana3.rs/serie/jesus">
+      <img alt="Cartel de la serie Jesus (2018-2019), retrato de Jesús con fondo luminoso y halo" class="w-full h-auto object-cover" height="231" loading="lazy" src="https://image.tmdb.org/t/p/w154/9dkO9nB20g3lkiWgxj7jxg3QDFk.jpg" width="154"/>
+      <div class="p-3">
+       <p class="text-gray-200 font-semibold truncate">
+        Jesus (2018-2019)
+       </p>
+       <div class="flex items-center mt-1 text-yellow-400">
+        <i class="fas fa-star mr-1">
+        </i>
+        <span class="text-sm font-medium">
+         7.9/10
+        </span>
+       </div>
+      </div>
+     </a>
+     <a class="group block rounded-lg bg-[#1c1c1c] shadow-lg overflow-hidden hover:shadow-cyan-500/50 transition" data-title="La jugada ganadora (2025)" href="https://cuevana3.rs/serie/la-jugada-ganadora">
+      <img alt="Cartel de la serie La jugada ganadora (2025), jugador de baloncesto lanzando a canasta" class="w-full h-auto object-cover" height="231" loading="lazy" src="https://image.tmdb.org/t/p/w154/lGLMcZyPNNXVOaFZOAuMFrtYsH5.jpg" width="154"/>
+      <div class="p-3">
+       <p class="text-gray-200 font-semibold truncate">
+        La jugada ganadora (2025)
+       </p>
+       <div class="flex items-center mt-1 text-yellow-400">
+        <i class="fas fa-star mr-1">
+        </i>
+        <span class="text-sm font-medium">
+         10/10
+        </span>
+       </div>
+      </div>
+     </a>
+     <a class="group block rounded-lg bg-[#1c1c1c] shadow-lg overflow-hidden hover:shadow-cyan-500/50 transition" data-title="WWE: Unreal (2025)" href="https://cuevana3.rs/serie/wwe-unreal">
+      <img alt="Cartel de la serie WWE: Unreal (2025), luchadores en acción en un ring iluminado" class="w-full h-auto object-cover" height="231" loading="lazy" src="https://image.tmdb.org/t/p/w154/4wfySL6AUTwXRCiL6tumMq9oFam.jpg" width="154"/>
+      <div class="p-3">
+       <p class="text-gray-200 font-semibold truncate">
+        WWE: Unreal (2025)
+       </p>
+       <div class="flex items-center mt-1 text-yellow-400">
+        <i class="fas fa-star mr-1">
+        </i>
+        <span class="text-sm font-medium">
+         8.4/10
+        </span>
+       </div>
+      </div>
+     </a>
+    </section>
+    <section aria-labelledby="tab-animes" class="tab-panel hidden mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6" id="panel-animes" role="tabpanel" tabindex="0">
+     <a class="group block rounded-lg bg-[#1c1c1c] shadow-lg overflow-hidden hover:shadow-cyan-500/50 transition" data-title="Lord of Mysteries (2025)" href="https://cuevana3.rs/anime/lord-of-mysteries">
+      <img alt="Cartel del anime Lord of Mysteries (2025), personaje misterioso con capa y fondo oscuro" class="w-full h-auto object-cover" height="231" loading="lazy" src="https://image.tmdb.org/t/p/w154/cR5KiAdVeZLG4nDUiCyqfvGzZ3f.jpg" width="154"/>
+      <div class="p-3">
+       <p class="text-gray-200 font-semibold truncate">
+        Lord of Mysteries (2025)
+       </p>
+       <div class="flex items-center mt-1 text-yellow-400">
+        <i class="fas fa-star mr-1">
+        </i>
+        <span class="text-sm font-medium">
+         9.3/10
+        </span>
+       </div>
+      </div>
+     </a>
+     <a class="group block rounded-lg bg-[#1c1c1c] shadow-lg overflow-hidden hover:shadow-cyan-500/50 transition" data-title="New Saga (2025)" href="https://cuevana3.rs/anime/new-saga">
+      <img alt="Cartel del anime New Saga (2025), héroe con espada y fondo de fantasía" class="w-full h-auto object-cover" height="231" loading="lazy" src="https://image.tmdb.org/t/p/w154/7WAVcPVqdLK9whw75A7z6qeiuCg.jpg" width="154"/>
+      <div class="p-3">
+       <p class="text-gray-200 font-semibold truncate">
+        New Saga (2025)
+       </p>
+       <div class="flex items-center mt-1 text-yellow-400">
+        <i class="fas fa-star mr-1">
+        </i>
+        <span class="text-sm font-medium">
+         10/10
+        </span>
+       </div>
+      </div>
+     </a>
+     <a class="group block rounded-lg bg-[#1c1c1c] shadow-lg overflow-hidden hover:shadow-cyan-500/50 transition" data-title="Nyaight of the Living Cat (2025)" href="https://cuevana3.rs/anime/nyaight-of-the-living-cat">
+      <img alt="Cartel del anime Nyaight of the Living Cat (2025), gato con ojos brillantes en un fondo oscuro" class="w-full h-auto object-cover" height="231" loading="lazy" src="https://image.tmdb.org/t/p/w154/xaiHM6xiEAcjuBSww2rUZ3ZaQM.jpg" width="154"/>
+      <div class="p-3">
+       <p class="text-gray-200 font-semibold truncate">
+        Nyaight of the Living Cat (2025)
+       </p>
+       <div class="flex items-center mt-1 text-yellow-400">
+        <i class="fas fa-star mr-1">
+        </i>
+        <span class="text-sm font-medium">
+         8/10
+        </span>
+       </div>
+      </div>
+     </a>
+     <a class="group block rounded-lg bg-[#1c1c1c] shadow-lg overflow-hidden hover:shadow-cyan-500/50 transition" data-title="Lord of Mysteries (2025)" href="https://cuevana3.rs/anime/lord-of-mysteries">
+      <img alt="Cartel del anime Lord of Mysteries (2025), personaje misterioso con capa y fondo oscuro" class="w-full h-auto object-cover" height="231" loading="lazy" src="https://image.tmdb.org/t/p/w154/cR5KiAdVeZLG4nDUiCyqfvGzZ3f.jpg" width="154"/>
+      <div class="p-3">
+       <p class="text-gray-200 font-semibold truncate">
+        Lord of Mysteries (2025)
+       </p>
+       <div class="flex items-center mt-1 text-yellow-400">
+        <i class="fas fa-star mr-1">
+        </i>
+        <span class="text-sm font-medium">
+         9.3/10
+        </span>
+       </div>
+      </div>
+     </a>
+    </section>
+    <section aria-labelledby="tab-doramas" class="tab-panel hidden mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6" id="panel-doramas" role="tabpanel" tabindex="0">
+     <a class="group block rounded-lg bg-[#1c1c1c] shadow-lg overflow-hidden hover:shadow-cyan-500/50 transition" data-title="¡Doona! (2023)" href="https://cuevana3.rs/serie/doona">
+      <img alt="Cartel del dorama ¡Doona! (2023), retrato de una mujer sonriente con fondo urbano" class="w-full h-auto object-cover" height="231" loading="lazy" src="https://image.tmdb.org/t/p/w154/uVJgd0E3CYfcGLz9jdUwwyRbySX.jpg" width="154"/>
+      <div class="p-3">
+       <p class="text-gray-200 font-semibold truncate">
+        ¡Doona! (2023)
+       </p>
+       <div class="flex items-center mt-1 text-yellow-400">
+        <i class="fas fa-star mr-1">
+        </i>
+        <span class="text-sm font-medium">
+         9.5/10
+        </span>
+       </div>
+      </div>
+     </a>
+     <a class="group block rounded-lg bg-[#1c1c1c] shadow-lg overflow-hidden hover:shadow-cyan-500/50 transition" data-title="Nam-soon, una chica superfuerte (2023)" href="https://cuevana3.rs/serie/nam-soon-una-chica-superfuerte">
+      <img alt="Cartel del dorama Nam-soon, una chica superfuerte (2023), mujer fuerte con expresión decidida" class="w-full h-auto object-cover" height="231" loading="lazy" src="https://image.tmdb.org/t/p/w154/mS99X55DiwWqnExJMfs5m25a2ZQ.jpg" width="154"/>
+      <div class="p-3">
+       <p class="text-gray-200 font-semibold truncate">
+        Nam-soon, una chica superfuerte (2023)
+       </p>
+       <div class="flex items-center mt-1 text-yellow-400">
+        <i class="fas fa-star mr-1">
+        </i>
+        <span class="text-sm font-medium">
+         7.5/10
+        </span>
+       </div>
+      </div>
+     </a>
+     <a class="group block rounded-lg bg-[#1c1c1c] shadow-lg overflow-hidden hover:shadow-cyan-500/50 transition" data-title="Tu tiempo llama (2023)" href="https://cuevana3.rs/serie/tu-tiempo-llama">
+      <img alt="Cartel del dorama Tu tiempo llama (2023), reloj antiguo con fondo nostálgico" class="w-full h-auto object-cover" height="231" loading="lazy" src="https://image.tmdb.org/t/p/w154/4SdQT2FQlls9mTTDT4h8ERTt4ys.jpg" width="154"/>
+      <div class="p-3">
+       <p class="text-gray-200 font-semibold truncate">
+        Tu tiempo llama (2023)
+       </p>
+       <div class="flex items-center mt-1 text-yellow-400">
+        <i class="fas fa-star mr-1">
+        </i>
+        <span class="text-sm font-medium">
+         8.2/10
+        </span>
+       </div>
+      </div>
+     </a>
+     <a class="group block rounded-lg bg-[#1c1c1c] shadow-lg overflow-hidden hover:shadow-cyan-500/50 transition" data-title="A la caza de espíritus malignos (2020)" href="https://cuevana3.rs/serie/a-la-caza-de-espiritus-malignos">
+      <img alt="Cartel del dorama A la caza de espíritus malignos (2020), figura oscura en bosque tenebroso" class="w-full h-auto object-cover" height="231" loading="lazy" src="https://image.tmdb.org/t/p/w154/qKO8ZSEwq50EGk3BeAh8J9Gr34K.jpg" width="154"/>
+      <div class="p-3">
+       <p class="text-gray-200 font-semibold truncate">
+        A la caza de espíritus malignos (2020)
+       </p>
+       <div class="flex items-center mt-1 text-yellow-400">
+        <i class="fas fa-star mr-1">
+        </i>
+        <span class="text-sm font-medium">
+         8.543/10
+        </span>
+       </div>
+      </div>
+     </a>
+     <a class="group block rounded-lg bg-[#1c1c1c] shadow-lg overflow-hidden hover:shadow-cyan-500/50 transition" data-title="¡Doona! (2023)" href="https://cuevana3.rs/serie/doona">
+      <img alt="Cartel del dorama ¡Doona! (2023), retrato de una mujer sonriente con fondo urbano" class="w-full h-auto object-cover" height="231" loading="lazy" src="https://image.tmdb.org/t/p/w154/uVJgd0E3CYfcGLz9jdUwwyRbySX.jpg" width="154"/>
+      <div class="p-3">
+       <p class="text-gray-200 font-semibold truncate">
+        ¡Doona! (2023)
+       </p>
+       <div class="flex items-center mt-1 text-yellow-400">
+        <i class="fas fa-star mr-1">
+        </i>
+        <span class="text-sm font-medium">
+         9.5/10
+        </span>
+       </div>
+      </div>
+     </a>
+    </section>
+   </div>
+  </main>
+  <!-- Footer -->
+  <footer class="bg-[#1c1c1c] text-gray-400 text-center py-6 select-none">
+   <p>
+    Copyright © 2025
+    <strong class="text-cyan-400">
+     Clan ORG
+    </strong>
+   </p>
+  </footer>
+  <script>
+   // Tabs functionality
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+
+    tabButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const target = button.getAttribute('data-tab');
+
+        tabButtons.forEach((btn) => {
+          btn.classList.remove('border-cyan-400', 'text-cyan-400', 'font-semibold');
+          btn.classList.add('text-gray-400');
+          btn.setAttribute('aria-selected', 'false');
+          btn.setAttribute('tabindex', '-1');
+        });
+
+        tabPanels.forEach((panel) => {
+          panel.classList.add('hidden');
+        });
+
+        button.classList.add('border-cyan-400', 'text-cyan-400', 'font-semibold');
+        button.classList.remove('text-gray-400');
+        button.setAttribute('aria-selected', 'true');
+        button.setAttribute('tabindex', '0');
+
+        const activePanel = document.getElementById(`panel-${target}`);
+        if (activePanel) {
+          activePanel.classList.remove('hidden');
+          activePanel.focus();
+        }
+      });
+    });
+
+    // Search filter functionality
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase().trim();
+      const allItems = document.querySelectorAll('.tab-panel a');
+
+      allItems.forEach((item) => {
+        const title = item.getAttribute('data-title').toLowerCase();
+        if (title.includes(query)) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    });
+  </script>
+ </body>
+</html>
